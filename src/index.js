@@ -8,7 +8,7 @@ import PropPractice from "./component/PropPractice";
 //import AuthorQuiz from "./component/AuthorQuiz";
 import { shuffle, sample } from "underscore";
 import { Dashboard, Character, Characters } from "./component/RoutingComponent";
-import { BrowserRouter, Route, Link,Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link,match } from "react-router-dom";
 
 const authors = [
   {
@@ -77,20 +77,21 @@ const authors = [
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 //render()
-let colors = ["Gray", "Green"];
+//let colors = ["Gray", "Green","Orange","Purple"];
 console.log("Characters :" +Object.values(Characters))
+
 ReactDOM.render(
   <BrowserRouter>
     <div>
       <aside>
         <ul>
           {Object.keys(Characters).map(name =>
-            // ["top/left/", "top/right/", "bottom/left/", "bottom/right/"].map(
-              ["bottom/left/", "bottom/right/"].map(  
-            (corner, index) => (
+             ["top/left/", "top/right/", "bottom/left/", "bottom/right/"].map(corner=>
+            // (corner,index) => (
+              ["Gray", "Green","Orange","Purple"].map(colors=>
                 <li>
-                  <Link to={corner + (name) + "/" + colors[index]}>
-                    {corner + name + "/" + colors[index]}
+                  <Link to={corner + (name) + "/" + colors}>
+                    {corner + name + "/" + colors}
                   </Link>
                 </li>
               )
@@ -99,8 +100,8 @@ ReactDOM.render(
         </ul>
       </aside>
       <main>
-        <Route path=" " component={Dashboard} />
-        <Route path="/top" render={() => <div>Something at the top</div>} />
+        <Route path="/" component={Dashboard}  />
+        <Route path="/top" render={() => <div>Something at the top </div>} />
         <Route
           path="/bottom"
           render={() => <div>Something at the bottom</div>}
